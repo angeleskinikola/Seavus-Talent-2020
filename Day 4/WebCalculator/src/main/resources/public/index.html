@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<form class="pure-form" action="http://localhost:8080/calculate" method="POST">
+    <h3>Web Calculator for adding or subtracting two numbers</h3>
+    <hr/>
+    <input type="text" name="firstOperand" placeholder="First Operand"/>
+    <select name="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+    </select>
+    <input type="text" name="secondOperand" placeholder="Second Operand"/>
+    <input class="pure-button pure-button-primary" type="submit" value="Calculate"/>
+</form>
+
+</body>
+</html>
