@@ -1,17 +1,16 @@
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) throws IOException {
-        ArrayList<String> words = mapKeysToArrList(WordCounter.wordCounter(new File("file.txt")));
 
         System.out.println("Enter the word order(asc/desc)");
         String answer = new Scanner(System.in).nextLine();
 
+        ArrayList<String> words = wordCounter(new File("file.txt"));
         if (answer.equalsIgnoreCase("asc")) {
             Collections.sort(words, new AscendingLengthStringComparator());
             printList(words);
@@ -29,13 +28,20 @@ public class Application {
         }
     }
 
-    public static ArrayList<String> mapKeysToArrList(HashMap<String, Integer> map) {
-        ArrayList<String> words = new ArrayList();
-        for (String word : map.keySet()) {
-            words.add(word);
-        }
 
-        return words;
+    public static ArrayList<String> wordCounter(File file) throws IOException {
+        String text = FileUtils.readFileToString(file, "UTF-8");
+        text = text.toLowerCase();
+        String clearText = text.replaceAll("[^a-zA-Z ]", "");
+        String[] words = clearText.split(" ");
+
+        ArrayList<String> wordsList = new ArrayList<>();
+        for (String word : words) {
+            if (!wordsList.contains(word)) {
+                wordsList.add(word);
+            }
+        }
+        return wordsList;
     }
 }
 
