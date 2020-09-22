@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ZipArchiver implements Archiver {
 
     @Override
-    public void archiver(File directory, File archive) throws ZipException {
+    public void archive(File directory, File archive) throws ZipException {
         ArrayList<File> filesList = new ArrayList<>();
         File[] files = directory.listFiles();
         for (File file : files) {
