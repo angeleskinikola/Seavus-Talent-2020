@@ -8,7 +8,7 @@ import java.io.IOException;
 public class SevenZipArchiver implements Archiver {
 
     @Override
-    public void archiver(File directory, File archive) throws IOException {
+    public void archive(File directory, File archive) throws IOException {
         SevenZOutputFile sevenZFile = new SevenZOutputFile(archive);
         File[] files = directory.listFiles();
         for (File file : files) {
