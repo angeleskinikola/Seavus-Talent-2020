@@ -10,13 +10,14 @@ public class Application {
         System.out.println("Enter the word order(asc/desc)");
         String answer = new Scanner(System.in).nextLine();
 
-        ArrayList<String> words = wordCounter(new File("file.txt"));
+        ArrayList<String> wordsArray = new ArrayList<>(findUniqueWords(new File("file.txt")));
+
         if (answer.equalsIgnoreCase("asc")) {
-            Collections.sort(words, new AscendingLengthStringComparator());
-            printList(words);
+            Collections.sort(wordsArray, new AscendingLengthStringComparator());
+            printList(wordsArray);
         } else if (answer.equalsIgnoreCase("desc")) {
-            Collections.sort(words, new DescendingLengthStringComparator());
-            printList(words);
+            Collections.sort(wordsArray, new DescendingLengthStringComparator());
+            printList(wordsArray);
         } else {
             System.out.println("You should type ascending or descending!");
         }
@@ -29,19 +30,16 @@ public class Application {
     }
 
 
-    public static ArrayList<String> wordCounter(File file) throws IOException {
+    public static HashSet<String> findUniqueWords(File file) throws IOException {
         String text = FileUtils.readFileToString(file, "UTF-8");
         text = text.toLowerCase();
         String clearText = text.replaceAll("[^a-zA-Z ]", "");
         String[] words = clearText.split(" ");
 
-        ArrayList<String> wordsList = new ArrayList<>();
-        for (String word : words) {
-            if (!wordsList.contains(word)) {
-                wordsList.add(word);
-            }
-        }
-        return wordsList;
+        HashSet<String> wordsSet = new HashSet<>();
+        wordsSet.addAll(Arrays.asList(words));
+
+        return wordsSet;
     }
 }
 
