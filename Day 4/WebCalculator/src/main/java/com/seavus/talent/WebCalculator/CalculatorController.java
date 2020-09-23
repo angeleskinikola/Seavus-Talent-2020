@@ -20,7 +20,8 @@ public class CalculatorController {
         } catch (Exception e) {
             return "Invalid input!";
         }
-        return operator.equals("-") ? String.valueOf(firstOperandParsed - secondOperandParsed)
-                : String.valueOf(firstOperandParsed + secondOperandParsed);
+        return operator.equals("minus") ? String.valueOf(firstOperandParsed - secondOperandParsed)
+                : operator.equals("plus") ?
+                String.valueOf(firstOperandParsed + secondOperandParsed) : "Invalid operator!";
     }
 }
