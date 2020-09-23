@@ -30,8 +30,8 @@ public class NoteService {
         return noteRepository.findAllNotes();
     }
 
-    public void updateNote(Long id, Note note) {
-        noteRepository.updateNoteById(id, note);
+    public void updateNote(Long id, String title, String content) {
+        noteRepository.updateNoteById(id, title, content);
     }
 
     public void deleteNote(Long id) {

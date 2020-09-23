@@ -27,9 +27,10 @@ public class NoteRepository {
         return notes;
     }
 
-    public void updateNoteById(Long id, Note note) {
+    public void updateNoteById(Long id, String title, String content) {
         for (int i = 0; i < notes.size(); i++) {
             if (notes.get(i).getId().equals(id)) {
+                Note note = new Note(title, content);
                 note.setId(id);
                 notes.set(i, note);
                 break;

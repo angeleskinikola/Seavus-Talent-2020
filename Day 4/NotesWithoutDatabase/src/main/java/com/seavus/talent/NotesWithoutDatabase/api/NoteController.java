@@ -41,7 +41,7 @@ public class NoteController {
 
     @PutMapping("/api/notes/{id}")
     public void updateNote(@PathVariable Long id, @RequestBody CreateNoteRequest request) {
-        noteService.updateNote(id, new Note(request.title, request.content));
+        noteService.updateNote(id, request.title, request.content);
     }
 
     @DeleteMapping("/api/notes/{id}")
