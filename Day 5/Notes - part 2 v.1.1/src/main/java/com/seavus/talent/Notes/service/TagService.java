@@ -40,6 +40,8 @@ public class TagService {
     }
 
     public void deleteTag(Long id) {
-        tagRepository.deleteById(id);
+        User user = securityService.getAuthenticatedUser();
+        List<Tag> tags = tagRepository.findByUserId(user.getId());
+        tags.stream().filter(t -> t.getId().equals(id)).forEach(t -> tagRepository.deleteById(id));
     }
 }
