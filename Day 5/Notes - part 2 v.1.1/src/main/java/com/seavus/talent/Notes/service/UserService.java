@@ -1,6 +1,5 @@
 package com.seavus.talent.Notes.service;
 
-import com.seavus.talent.Notes.model.Note;
 import com.seavus.talent.Notes.model.User;
 import com.seavus.talent.Notes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,8 @@ package com.seavus.talent.Notes.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
+
+import java.util.Set;
 
 @Entity
 public class Tag {
@@ -18,7 +19,7 @@ public class Tag {
     private User user;
 
     @ManyToMany(mappedBy = "tags")
-    private List<Note> notes;
+    private Set<Note> notes;
 
     public Tag() {
     }
@@ -41,7 +42,7 @@ public class Tag {
     }
 
     @JsonIgnore
-    public List<Note> getNotes() {
+    public Set<Note> getNotes() {
         return notes;
     }
 

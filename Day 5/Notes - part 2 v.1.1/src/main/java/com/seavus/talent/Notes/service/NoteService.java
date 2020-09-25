@@ -10,9 +10,7 @@ import com.seavus.talent.Notes.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,45 +22,62 @@ public class NoteService {
 
     private TagRepository tagRepository;
 
-    private UserRepository userRepository;
 
     @Autowired
-    public NoteService(NoteRepository noteRepository, SecurityService securityService,
-                       TagRepository tagRepository, UserRepository userRepository) {
+    public NoteService(NoteRepository noteRepository, SecurityService securityService, TagRepository tagRepository) {
         this.noteRepository = noteRepository;
         this.securityService = securityService;
         this.tagRepository = tagRepository;
     }
 
-    public void createNote(String title, String content, List<Long> tagIdList) {
+    public Note createNote(String title, String content, Set<Long> tagIdSet) {
         User user = securityService.getAuthenticatedUser();
-        List<Tag> tags = tagRepository.findAllById(tagIdList)
-                            .stream().filter(tag -> tag.getUser().equals(user))
-                            .collect(Collectors.toList());
-        noteRepository.save(new Note(title, content, user, tags));
+        Set<Tag> tags = tagRepository.findAllById(tagIdSet)
+                .stream().filter(tag -> tag.getUser().equals(user))
+                .collect(Collectors.toSet());
+        return noteRepository.save(new Note(title, content, user, tags));
     }
 
     public Optional<Note> findNote(Long id) {
-        return noteRepository.findById(id);
+        User user = securityService.getAuthenticatedUser();
+        Set<Note> notes = noteRepository.findNotesByUserId(user.getId());
+        return notes.stream().filter(n -> n.getId().equals(id)).findFirst();
     }
 
-    public List<Note> findNotes() {
+    public Set<Note> findNotes() {
         User user = securityService.getAuthenticatedUser();
         return noteRepository.findNotesByUserId(user.getId());
     }
 
-    public void updateNote(Long id, String title, String content) {
-        noteRepository.updateById(id, title, content);
+    public Note updateNote(Long id, String title, String content, Set<Long> tagIdSet) {
+        User user = securityService.getAuthenticatedUser();
+
+        Set<Tag> tags = tagRepository.findAllById(tagIdSet).stream()
+                .filter(t -> t.getUser().equals(user)).collect(Collectors.toSet());
+
+        Set<Note> notes = noteRepository.findNotesByUserId(user.getId());
+
+        Note note = notes.stream().filter(n -> n.getId().equals(id)).findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+
+        note.setTitle(title);
+        note.setContent(content);
+        note.setTags(tags);
+
+        return noteRepository.save(note);
     }
 
     public void deleteNote(Long id) {
-        noteRepository.deleteById(id);
+        User user = securityService.getAuthenticatedUser();
+        Set<Note> notes = noteRepository.findNotesByUserId(user.getId());
+        Note note = notes.stream().filter(n -> n.getId().equals(id)).findFirst().orElseThrow(IllegalArgumentException::new);
+        noteRepository.deleteById(note.getId());
     }
 
-    public List<Note> findNotesByTagId(Long id) {
+    public Set<Note> findNotesByTagId(Long id) {
         User user = securityService.getAuthenticatedUser();
         return noteRepository.findNotesByTagId(id).stream()
                 .filter(note -> note.getUser().equals(user))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 }

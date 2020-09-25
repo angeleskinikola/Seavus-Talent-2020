@@ -3,7 +3,7 @@ package com.seavus.talent.Notes.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -17,10 +17,10 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Note> notes;
+    private Set<Note> notes;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Tag> tags;
+    private Set<Tag> tags;
 
     public User() {
     }
@@ -43,7 +43,7 @@ public class User {
     }
 
     @JsonIgnore
-    public List<Note> getNotes() {
+    public Set<Note> getNotes() {
         return notes;
     }
 
@@ -51,12 +51,12 @@ public class User {
         this.username = username;
     }
 
-    public void setNotes(List<Note> notes) {
+    public void setNotes(Set<Note> notes) {
         this.notes = notes;
     }
 
     @JsonIgnore
-    public List<Tag> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 

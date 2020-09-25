@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 public class NoteController {
@@ -23,14 +23,14 @@ public class NoteController {
     public static class CreateNoteRequest {
         public String title;
         public String content;
-        public List<Long> tags;
+        public Set<Long> tags;
 
     }
 
     @PostMapping("/api/notes")
-    public void createNote(@RequestBody CreateNoteRequest request) {
-        noteService.createNote(request.title, request.content,
-                request.tags != null ? request.tags : new ArrayList<>());
+    public Note createNote(@RequestBody CreateNoteRequest request) {
+        return noteService.createNote(request.title, request.content,
+                request.tags != null ? request.tags : new HashSet<>());
     }
 
     @GetMapping("/api/notes/{id}")
@@ -38,19 +38,20 @@ public class NoteController {
         return noteService.findNote(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/api/notes/tags/{id}")
-    public List<Note> findNotesByTagId(@PathVariable Long id) {
+    @GetMapping("/api/tags/{id}/notes")
+    public Set<Note> findNotesByTagId(@PathVariable Long id) {
         return noteService.findNotesByTagId(id);
     }
 
     @GetMapping("/api/notes")
-    public List<Note> findNotes() {
+    public Set<Note> findNotes() {
         return noteService.findNotes();
     }
 
     @PutMapping("/api/notes/{id}")
-    public void updateNote(@PathVariable Long id, @RequestBody CreateNoteRequest request) {
-        noteService.updateNote(id, request.title, request.content);
+    public Note updateNote(@PathVariable Long id, @RequestBody CreateNoteRequest request) {
+        return noteService.updateNote(id, request.title, request.content,
+                request.tags != null ? request.tags : new HashSet<>());
     }
 
     @DeleteMapping("/api/notes/{id}")

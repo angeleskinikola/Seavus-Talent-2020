@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 public class TagController {
@@ -39,7 +39,7 @@ public class TagController {
     }
 
     @GetMapping("/api/tags")
-    public List<Tag> findNotes() {
+    public Set<Tag> findNotes() {
         User user = securityService.getAuthenticatedUser();
         return tagService.findTags(user.getId());
     }
