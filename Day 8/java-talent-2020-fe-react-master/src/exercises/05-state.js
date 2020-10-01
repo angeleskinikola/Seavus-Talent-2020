@@ -26,8 +26,8 @@ class EditNote extends React.Component {
 
     render() {
         return <div>
-           <label>title</label> <input type="text" onChange={ this.setTitle } value={ this.state.currentTitle }/>
-           <label>content</label> <input type="text" onChange={ this.setContent } value={ this.state.currentContent }/>
+           <label>title</label> <input type="text" onChange={ this.setTitle } />
+           <label>content</label> <input type="text" onChange={ this.setContent } />
            <hr/>
             <p>title: { this.state.title }</p>
             <hr/>

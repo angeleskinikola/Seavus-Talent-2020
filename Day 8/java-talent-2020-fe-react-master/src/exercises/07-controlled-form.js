@@ -46,18 +46,14 @@ class EditNoteForm extends Component {
     render() {
         return (
         <form onSubmit={this.handleSubmit}>
-            <label>title</label> <input type="text" placeholder="Title" onChange={ this.setTitle } value={ this.state.currentTitle }/>
-            <label>content</label> <input type="text" placeholder="Content" onChange={ this.setContent } value={ this.state.currentContent }/>
+            <label>title</label> <input type="text" placeholder="Title" onChange={ this.setTitle } defaultValue={ this.props.defaultTitle } />
+            <label>content</label> <input type="text" placeholder="Content" onChange={ this.setContent } defaultValue={ this.props.defaultContent }/>
             <input type="submit" value="Submit" disabled={this.state.title === '' || this.state.content === ''
             || this.state.title.length > 10 ? true : false}/>
             <hr/>
             <label hidden={this.state.title === '' ? false : true}> Title is a mandatory field! </label>
             <label hidden={this.state.title.length > 10 ? false : true}> Title cannot contain more than 10 characters</label>
             <label hidden={this.state.content === '' ? false : true}> Content is a mandatory field!</label>
-            <hr/>
-            <label>{this.props.defaultTitle}</label>
-            <hr/>
-            <label>{this.props.defaultContent}</label>
         </form>
         );
     }

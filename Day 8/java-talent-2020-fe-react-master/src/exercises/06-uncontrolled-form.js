@@ -25,7 +25,6 @@ class CreateNoteForm extends Component {
         super(props)
         this.titleInput = React.createRef();
         this.contentInput = React.createRef();
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit = (event) => {
