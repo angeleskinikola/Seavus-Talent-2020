@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 // For controlled components, the idea is that you push the values from the component
@@ -28,7 +29,9 @@ class EditNoteForm extends Component {
             title: '',
             content: '',
             titleErrorMessage: '',
-            contentErrorMessage: ''
+            contentErrorMessage: '',
+            titleError: true,
+            contentError: true
         }
   
     
@@ -38,22 +41,40 @@ class EditNoteForm extends Component {
     }
 
     setTitle = (e) => {
-        this.setState({title: e.target.value})
-        if (this.state.title === '') {
-            this.setState({titleErrorMessage: 'Title is a mandatory field!'});
-        } else if (this.state.title.length > 10) {
-            this.setState({titleErrorMessage: 'Title cannot contain more than 10 characters'});
+        if(e.target.value.length > 10) {
+            this.setState({
+                title: e.target.value,
+                titleErrorMessage: 'Title cannot contain more than 10 characters!',
+                titleError: true
+            })    
+        } else if (e.target.value === '') {
+            this.setState({
+                title: e.target.value,
+                titleErrorMessage: 'Title is a mandatory field!',
+                titleError: true
+            }) 
         } else {
-            this.setState({titleErrorMessage: ''});
+            this.setState({
+                title: e.target.value,
+                titleErrorMessage: '',
+                titleError: false
+            })
         }
     }        
 
     setContent = (e) => {
-        this.setState({content: e.target.value})
-        if (this.state.content === '') {
-            this.setState({contentErrorMessage: 'Content is a mandatory field!'});
+        if (e.target.value === '') {
+            this.setState({
+                content: e.target.value,
+                contentErrorMessage: 'Content is a mandatory field!',
+                contentError: true
+            }) 
         } else {
-            this.setState({contentErrorMessage: ''});
+            this.setState({
+                content: e.target.value,
+                contentErrorMessage: '',
+                contentError: false
+            })
         }
     }
 
@@ -63,8 +84,7 @@ class EditNoteForm extends Component {
         <form onSubmit={this.handleSubmit}>
             <label>title</label> <input type="text" placeholder="Title" onChange={ this.setTitle } defaultValue={ this.props.defaultTitle } />
             <label>content</label> <input type="text" placeholder="Content" onChange={ this.setContent } defaultValue={ this.props.defaultContent }/>
-            <input type="submit" value="Submit" disabled={this.state.title === '' || this.state.content === ''
-            || this.state.title.length > 10 ? true : false}/>
+            <input type="submit" value="Submit" disabled={this.state.titleError || this.state.contentError}/>
             <hr/>
             <label> {this.state.titleErrorMessage} </label>
             <label> {this.state.contentErrorMessage} </label>
