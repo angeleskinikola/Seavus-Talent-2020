@@ -26,7 +26,9 @@ import React, { Component } from 'react';
 class EditNoteForm extends Component {
         state = {
             title: '',
-            content: ''
+            content: '',
+            titleErrorMessage: '',
+            contentErrorMessage: ''
         }
   
     
@@ -37,27 +39,35 @@ class EditNoteForm extends Component {
 
     setTitle = (e) => {
         this.setState({title: e.target.value})
+        if (this.state.title === '') {
+            this.setState({titleErrorMessage: 'Title is a mandatory field!'});
+        } else if (this.state.title.length > 10) {
+            this.setState({titleErrorMessage: 'Title cannot contain more than 10 characters'});
+        } else {
+            this.setState({titleErrorMessage: ''});
+        }
     }        
 
     setContent = (e) => {
         this.setState({content: e.target.value})
+        if (this.state.content === '') {
+            this.setState({contentErrorMessage: 'Content is a mandatory field!'});
+        } else {
+            this.setState({contentErrorMessage: ''});
+        }
     }
+
 
     render() {
         return (
         <form onSubmit={this.handleSubmit}>
-            <label>title</label> <input type="text" placeholder="Title" onChange={ this.setTitle } value={ this.state.currentTitle }/>
-            <label>content</label> <input type="text" placeholder="Content" onChange={ this.setContent } value={ this.state.currentContent }/>
+            <label>title</label> <input type="text" placeholder="Title" onChange={ this.setTitle } defaultValue={ this.props.defaultTitle } />
+            <label>content</label> <input type="text" placeholder="Content" onChange={ this.setContent } defaultValue={ this.props.defaultContent }/>
             <input type="submit" value="Submit" disabled={this.state.title === '' || this.state.content === ''
             || this.state.title.length > 10 ? true : false}/>
             <hr/>
-            <label hidden={this.state.title === '' ? false : true}> Title is a mandatory field! </label>
-            <label hidden={this.state.title.length > 10 ? false : true}> Title cannot contain more than 10 characters</label>
-            <label hidden={this.state.content === '' ? false : true}> Content is a mandatory field!</label>
-            <hr/>
-            <label>{this.props.defaultTitle}</label>
-            <hr/>
-            <label>{this.props.defaultContent}</label>
+            <label> {this.state.titleErrorMessage} </label>
+            <label> {this.state.contentErrorMessage} </label>
         </form>
         );
     }
