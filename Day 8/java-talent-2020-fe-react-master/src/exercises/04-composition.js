@@ -13,7 +13,7 @@ function Note(props) {
     return <div className="note">
         <NoteHeader title={props.title}/>
         <NoteContent content={props.content}/>
-        <NoteFooter onEdit={onEdit}/>
+        <NoteFooter />
     </div>;
 }
 
@@ -45,7 +45,7 @@ function NoteContent({ content }) {
 NoteContent.propTypes = {
     content: PropTypes.string.isRequired
 };
-function NoteFooter({ onEdit }) {
+function NoteFooter() {
     return (
         <div className="note-footer">
             <button onClick={onEdit}>Edit</button>
