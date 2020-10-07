@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import PropTypes from 'prop-types';
-import axios from 'axios';
-import NotesGrid from './Note.jsx';
-import Header from './Header.jsx';
+import NotesGrid from './components/Note.jsx';
+import Header from './components/Header.jsx';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
-import ManageTags from './ManageTags';
+import ManageTags from './components/ManageTags.jsx';
 
-import CreateNote from './CreateNote';
-import UpdateNote from './UpdateNote';
-import FilterNotesByTag from './FilterNotesByTag';
+import CreateNote from './components/CreateNote.jsx';
+import UpdateNote from './components/UpdateNote.jsx';
+import FilterNotesByTag from './components/FilterNotesByTag.jsx';
 
 function App() {
   return (
