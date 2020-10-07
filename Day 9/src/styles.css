@@ -1,0 +1,187 @@
+.note {
+    position: relative;
+    width: 280px;
+    min-height: 250px;
+    background: linear-gradient(#fdf4bb, #e8dc88);
+    margin: 17px;
+    display: inline-block;
+}
+
+
+.note .note-header {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ece09f;
+    font-weight: 700;
+}
+
+.note .note-header .note-header-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.note .note-content {
+    padding: 10px 10px 0;
+    height: 160px;
+}
+
+.note .note-footer {
+    position: relative;
+    bottom: 0;
+    padding: 5px;
+}
+
+.note .note-footer .note-footer-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.note .note-footer .footer-tag-button {
+    background: #cfbc41;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 12px;
+    margin: 1px;
+}
+
+.notes-header {
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    background: linear-gradient(#0f5e51, #1a7263);
+    height: 40px;
+    font-weight: 700;
+}
+
+.notes-header .header-button {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    background: white;
+    cursor: pointer;
+    height: 25px;
+    border: 1px solid whitesmoke;
+    border-radius: 2px;
+}
+
+.notes-header .header-title .ahref:visited, .ahref:active, .ahref:hover, .ahref:link {
+    color: white;
+    text-decoration: none;
+}
+
+.add-note-button {
+    font-family: sans-serif;
+    position: fixed;
+    bottom: 0;
+    right: 30px;
+    height: 60px;
+    width: 60px;
+    background: #fff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 60px;
+    color: #1a7263;
+    line-height: 60px;
+    font-size: 3em;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: none;
+}
+
+.notes-grid {
+    background: rgb(238, 241, 241);
+    padding-top: 15px;
+}
+
+.create-note {
+    width: 400px;
+    height: 350px;
+    background: linear-gradient(#fdf4bb, #e8dc88);
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 100px;
+    
+}
+
+.create-note .create-note-title {
+    width: 300px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.create-note .create-note-content {
+    width: 300px;
+    height: 200px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.tags-grid {
+    width: 300px;
+    height: 250px;
+    background: linear-gradient(#fdf4bb, #e8dc88);
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 100px;   
+}
+
+.tags-grid .tags-name {
+    width: 300px;
+    margin-left: 150px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.update-note {
+    width: 400px;
+    height: 350px;
+    background: linear-gradient(#fdf4bb, #e8dc88);
+    position: absolute;
+    margin-left: 500px;
+    margin-top: 100px;   
+}
+
+.update-note .update-note-title {
+    width: 300px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.update-note .update-note-content {
+    width: 300px;
+    height: 200px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.tags-grid {
+    position: absolute;
+    width: 700px;
+    height: 100px;
+    margin-left: 350px;
+    margin-right: 350px;
+    background: linear-gradient(#fdf4bb, #e8dc88);
+}
+
+#selectTagId {
+    width: 300px;
+    margin-left: 150px;
+}
+
+.tags-grid .delete-tag-button {
+    margin-left: 150px;
+}
