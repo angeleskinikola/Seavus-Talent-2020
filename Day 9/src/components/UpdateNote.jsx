@@ -65,7 +65,6 @@ export class UpdateNote extends Component {
         .catch(error => console.log(error))
     }
 
-    // novo
     setTagsToAdd = (e) => {
         var tagsNames = new Set();
         
@@ -84,8 +83,6 @@ export class UpdateNote extends Component {
             tags: [...this.state.tags, ...tagsNames]
         })
     }
-
-    // novo
 
     render() {
         return(<div className="update-note">
