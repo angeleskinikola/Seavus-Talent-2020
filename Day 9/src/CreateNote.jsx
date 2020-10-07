@@ -63,17 +63,18 @@ export default class CreateNote extends Component {
             <input disabled={this.state.title === '' || this.state.content === '' ? true : false } type="submit" value="Create" className="create-note-button" />
             <br/>
         </form>
+    
         <select id="selectId">
             { this.state.tags.map(tag => <option value={tag.id} key={tag.name}>{tag.name}</option>) }
         </select>
         <button onClick={this.setTagsToAdd}>Add tag</button>
-
+    
         <br/>
             <div className="create-note-add-tags">
             { this.state.tagNames.map(tag => 
-                <label className="create-note-add-tags-tag">
-                    #{tag.name}  x
-                </label>)
+                <button className="create-note-add-tags-tag">
+                    #{tag.name}
+                </button>)
             }
             </div>
         </div>

@@ -221,3 +221,18 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.update-note .update-note-tags {
+    margin-left: 10px;
+}
+
+.update-note .update-note-tags .selectTagIdUpdate {
+    background: #cfbc41;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 9px;
+    margin-right: 5px;
+    padding: 2px;
+    
+}
