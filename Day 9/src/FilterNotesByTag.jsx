@@ -25,6 +25,11 @@ export default class FilterNotesByTag extends Component {
     render() {
         return (
             <div className="notes-grid">
+                <div className="notes-grid-cancel">
+                <Link to="/">
+                <button className="notes-grid-cancel-btn">Cancel filter</button>
+                </Link>
+                </div>
                { this.state.notes.map(note => <Note id={note.id} title={note.title} content={note.content} tags={note.tags}/>) }
             </div>
         );

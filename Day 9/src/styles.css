@@ -102,7 +102,6 @@
 
 .notes-grid {
     background: rgb(238, 241, 241);
-    padding-top: 15px;
 }
 
 .create-note {
@@ -184,4 +183,41 @@
 
 .tags-grid .delete-tag-button {
     margin-left: 150px;
+}
+
+.notes-grid .notes-grid-cancel {
+    width: all;
+    height: 35px;
+    background: lightgrey;
+}
+
+.notes-grid .notes-grid-cancel .notes-grid-cancel-btn {
+    margin-left: 20px;
+    margin-top: 5px;
+    cursor: pointer;
+    height: 25px;
+    border: 1px solid whitesmoke;
+    border-radius: 2px;
+}
+
+.create-note .create-note-add-tags {
+    display: inline-block;
+    margin: 10px;
+}
+
+.create-note .create-note-add-tags .create-note-add-tags-tag {
+    
+    background: #cfbc41;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 9px;
+    margin-right: 5px;
+    padding: 2px;
+}
+
+.create-note #selectId {
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
 }

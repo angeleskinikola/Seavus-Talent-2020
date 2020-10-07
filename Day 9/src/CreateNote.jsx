@@ -10,7 +10,7 @@ export default class CreateNote extends Component {
         title: '',
         content: '',
         tagsToAdd: [],
-        tagName: [],
+        tagNames: [],
         tags: []
     }
 
@@ -42,6 +42,17 @@ export default class CreateNote extends Component {
 
     setTagsToAdd = (e) => {
         this.state.tagsToAdd.push(document.getElementById("selectId").value);
+        var tagsNames = new Set();
+        for(var i=0; i< this.state.tagsToAdd.length; i++) {
+            for(var j=0; j< this.state.tags.length; j++) {
+                if(this.state.tags[j].id == this.state.tagsToAdd[i]) {
+                    tagsNames.add(this.state.tags[j])
+                }
+            }
+        }
+        this.setState({
+            tagNames: [...tagsNames]
+        })
     }
 
     render() {
@@ -53,10 +64,20 @@ export default class CreateNote extends Component {
             <br/>
         </form>
         <select id="selectId">
-            { this.state.tags.map(tag => <option value={tag.id}>{tag.name}</option>) }
+            { this.state.tags.map(tag => <option value={tag.id} key={tag.name}>{tag.name}</option>) }
         </select>
         <button onClick={this.setTagsToAdd}>Add tag</button>
+
+        <br/>
+            <div className="create-note-add-tags">
+            { this.state.tagNames.map(tag => 
+                <label className="create-note-add-tags-tag">
+                    #{tag.name}  x
+                </label>)
+            }
+            </div>
         </div>
+        
     }
 }
 
